@@ -2,6 +2,7 @@ package pk.edu.uiit.arid2480.assignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,7 @@ public class Question2 extends AppCompatActivity {
 
     EditText etName,etEmail,etPhone,etPassword,etRetype,etCountry;
     Button  btnRegister,btnReset;
-    DBHelper dbHelper;
+    DBHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +33,14 @@ public class Question2 extends AppCompatActivity {
                 String Retype = etRetype.getText().toString();
                 String Country = etCountry.getText().toString();
                 if(Password.equals(Retype)){
-                    long userdata = dbHelper.singup(Name,Email,Phone,Password,Country);
+                    long userdata = db.singup(Name,Email,Password,Phone,Country);
                     if(userdata == -1){
                         Toast.makeText(Question2.this, "Error Occur", Toast.LENGTH_LONG).show();
                     }
                     else{
                         Toast.makeText(Question2.this, "Added Successfully ", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Question2.this,Login.class);
+                        startActivity(intent);
                     }
                 }
                 else{
@@ -62,13 +65,13 @@ public class Question2 extends AppCompatActivity {
 
 
     private void initialize() {
-        DBHelper dbHelper = new DBHelper(this);
-        etName = (EditText)     findViewById(R.id.etName);
-        etEmail = (EditText)    findViewById(R.id.etEmail);
-        etPhone = (EditText)    findViewById(R.id.etPhone);
-        etPassword = (EditText) findViewById(R.id.etPassword);
-        etRetype = (EditText)   findViewById(R.id.etRetype);
-        etCountry = (EditText)  findViewById(R.id.etCountry);
+        db = new DBHelper(this);
+        etName = (EditText)     findViewById(R.id.etName1);
+        etEmail = (EditText)    findViewById(R.id.etEmail1);
+        etPhone = (EditText)    findViewById(R.id.etPhone1);
+        etPassword = (EditText) findViewById(R.id.etPassword1);
+        etRetype = (EditText)   findViewById(R.id.etRetype1);
+        etCountry = (EditText)  findViewById(R.id.etCountry1);
         btnRegister = (Button)  findViewById(R.id.btnRegister);
         btnReset = (Button)     findViewById(R.id.btnReset);
 

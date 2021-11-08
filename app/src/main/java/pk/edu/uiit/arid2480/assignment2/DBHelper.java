@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final String  databasename = "Studentform";
+    private static final String  databasename = "Studentdata";
     private static final String  tablename = "signup";
     private static final String  table_col_name = "signup";
     private static final int  dbversion = 1;
@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
     public Cursor login(String Email, String password){
-        Cursor userdata= sqLiteDatabase.rawQuery("Select * from " +tablename+"where student_email ='"+Email+"' And student_password='"+password+"'",null);
+        Cursor userdata= sqLiteDatabase.rawQuery("Select * from " +tablename+" where student_email = '"+Email+"' And student_password = '"+password+"'",null);
         return userdata;
     }
 }
